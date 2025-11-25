@@ -9,7 +9,7 @@
         "--background-index", // 后台分析并保存索引文件
         "--clang-tidy", // 启用 Clang-Tidy 以提供「静态检查」
         "--clang-tidy-checks=performance-*, bugprone-*, misc-*, google-*, modernize-*, readability-*, portability-*",
-        "--compile-commands-dir=build/.vscode", // 编译数据库(compile_commands.json 文件)的目录位置
+        "--compile-commands-dir=${workspaceFolder}/.vscode", // 编译数据库(compile_commands.json 文件)的目录位置
         "--completion-parse=auto", // 当 clangd 准备就绪时，用它来分析建议
         "--completion-style=detailed", // 建议风格：打包(重载函数只会给出一个建议);还可以设置为 detailed
         "--query-driver=D:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe",
@@ -76,7 +76,6 @@
         }
     ],
     "workbench.editor.enablePreview": false,
-    "workbench.activityBar.orientation": "vertical",
     "workbench.list.smoothScrolling": true,
     "workbench.colorTheme": "Default Dark+",
     "workbench.editor.empty.hint": "hidden",
@@ -86,29 +85,19 @@
         "{hexdiff}:/**/*.*": "hexEditor.hexedit",
         "{git,gitlens}:/**/*.ui": "default"
     },
-    "cursor.cpp.enablePartialAccepts": true,
-    "cursor.general.enableShadowWorkspace": true,
-    "cursor.diffs.useCharacterLevelDiffs": true,
-    "cursor.general.gitGraphIndexing": "enabled",
-    "cursor.cpp.disabledLanguages": [
-        "markdown",
-        "plaintext"
-    ],
-    // "cmake.configureSettings": {
-    //     "CMAKE_TOOLCHAIN_FILE": "D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
-    //     "VCPKG_TARGET_TRIPLET": "x64-windows"
-    // },
+    "http.proxy": "http://127.0.0.1:7890",
     "cmake.generator": "Ninja",
     "cmake.copyCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
     "cmake.additionalCompilerSearchDirs": [
         "D:\\Qt\\Tools\\mingw1310_64\\bin",
     ],
+    // "cmake.configureSettings": {
+    //     "CMAKE_TOOLCHAIN_FILE": "D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+    //     "VCPKG_TARGET_TRIPLET": "x64-windows"
+    // },
     "terminal.integrated.profiles.windows": {
         "PowerShell 7": {
             "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
-        },
-        "MSYS2 MINGW64": {
-            "path": "D:\\msys64\\mingw64.exe"
         },
         "MSVC PowerShell": {
             "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
@@ -116,6 +105,19 @@
                 "-NoExit",
                 "-Command",
                 "& 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\Launch-VsDevShell.ps1' -Arch amd64"
+            ],
+            "icon": "terminal-powershell"
+        },
+        "ESP-IDF PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-NoExit",
+                "-File",
+                "D:\\Espressif\\Initialize-Idf.ps1",
+                "-IdfId",
+                "esp-idf-f27b302856cbf3a7065694c7cc7f9de5"
             ],
             "icon": "terminal-powershell"
         }
@@ -141,7 +143,7 @@
     "notebook.formatOnSave.enabled": true,
     "notebook.lineNumbers": "on", // 控制单元格编辑器中行号的显示
     "[cpp]": {
-        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.defaultFormatter": "ms-vscode.cmake-tools",
         "editor.quickSuggestions": {
             "other": "on",
             "comments": "off",
@@ -208,28 +210,37 @@
     "editor.quickSuggestionsDelay": 0,
     "diffEditor.ignoreTrimWhitespace": false,
     "idf.hasWalkthroughBeenShown": true,
-    "idf.espIdfPathWin": "D:/Espressif/frameworks/esp-idf-v5.4.1/",
+    "idf.espIdfPathWin": "D:/Espressif/frameworks/esp-idf-v5.5.1/",
     "idf.toolsPathWin": "D:\\Espressif",
     "idf.gitPathWin": "D:/Espressif/tools/idf-git/2.44.0/cmd/git.exe",
     "idf.pythonInstallPath": "D:\\Espressif\\tools\\idf-python\\3.11.2\\python.exe",
-    "cursor.general.disableHttp2": true,
-    "http.proxy": "http://127.0.0.1:7890",
     "C_Cpp.intelliSenseEngine": "disabled",
-    // "C_Cpp.codeAnalysis.clangTidy.enabled": true,
-    // "C_Cpp.clang_format_sortIncludes": true,
-    // "C_Cpp.clang_format_fallbackStyle": "Microsoft",
-    // "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
-    // "C_Cpp.autocompleteAddParentheses": true,
-    // "C_Cpp.inlayHints.referenceOperator.enabled": true,
-    // "C_Cpp.inlayHints.parameterNames.enabled": true,
-    // "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
-    //     "abseil-*",
-    //     "altera-*",
-    //     "fuchsia-*",
-    //     "llvmlibc-*",
-    //     "google-readability-todo",
-    //     "readability-braces-around-statements",
-    //     "hicpp-braces-around-statements",
-    //     "misc-unused-*"
-    // ],
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.clang_format_sortIncludes": true,
+    "C_Cpp.clang_format_fallbackStyle": "Microsoft",
+    "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
+    "C_Cpp.autocompleteAddParentheses": true,
+    "C_Cpp.inlayHints.referenceOperator.enabled": true,
+    "C_Cpp.inlayHints.parameterNames.enabled": true,
+    "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "abseil-*",
+        "altera-*",
+        "fuchsia-*",
+        "llvmlibc-*",
+        "google-readability-todo",
+        "readability-braces-around-statements",
+        "hicpp-braces-around-statements",
+        "misc-unused-*"
+    ],
+    "editor.minimap.enabled": false,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "c": true
+    },
+    "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    // "editor.minimap.enabled": false,
 }
