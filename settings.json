@@ -75,15 +75,18 @@
             "regular": "[\\s|/]+"
         }
     ],
-    "workbench.editor.enablePreview": false,
     "workbench.list.smoothScrolling": true,
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Dark+",
     "workbench.editor.empty.hint": "hidden",
     "workbench.iconTheme": "office-material-icon-theme",
     "workbench.view.alwaysShowHeaderActions": true,
     "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
         "{hexdiff}:/**/*.*": "hexEditor.hexedit",
-        "{git,gitlens}:/**/*.ui": "default"
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.ui": "default",
+        "{git,gitlens}:/**/*.ui": "default",
+        "*.qrc": "default"
     },
     "http.proxy": "http://127.0.0.1:7890",
     "cmake.generator": "Ninja",
@@ -133,7 +136,7 @@
     //     "LC_ALL": "zh_CN.UTF-8" // 集成终端编码: zh_CN.UTF-8
     // },
     "window.dialogStyle": "custom",
-    "window.commandCenter": true,
+    "window.commandCenter": false,
     "window.restoreWindows": "all",
     "vscode-office.editorTheme": "Auto",
     "files.autoSave": "afterDelay",
@@ -159,10 +162,14 @@
         }
     },
     "[qml]": {
-        "editor.defaultFormatter": "theqtcompany.qt-qml"
+        "editor.defaultFormatter": "ms-vscode.cmake-tools"
     },
     "vscode-serial-monitor.customBaudRates": [
-        2000000
+        2000000,
+        512000,
+        921600,
+        1000000,
+        3000000,
     ],
     "git.autofetch": true, // 自动从当前 Git 存储库的默认远程库提取提交
     "git.confirmSync": false, // 同步 Git 存储库前确认
@@ -209,12 +216,12 @@
     "editor.formatOnPaste": false,
     "editor.quickSuggestionsDelay": 0,
     "diffEditor.ignoreTrimWhitespace": false,
+    "idf.espIdfPathWin": "d:/espidf/esp-idf-6.0",
+    "idf.toolsPathWin": "C:/Users/jianhao.liang/.espressif",
+    "idf.gitPathWin": "D:/Git/cmd/git.exe",
+    "idf.pythonInstallPath": "C:/Users/jianhao.liang/.espressif/python_env/idf6.0_py3.13_env/Scripts/python.exe",
     "idf.hasWalkthroughBeenShown": true,
-    "idf.espIdfPathWin": "D:/Espressif/frameworks/esp-idf-v5.5.1/",
-    "idf.toolsPathWin": "D:\\Espressif",
-    "idf.gitPathWin": "D:/Espressif/tools/idf-git/2.44.0/cmd/git.exe",
-    "idf.pythonInstallPath": "D:\\Espressif\\tools\\idf-python\\3.11.2\\python.exe",
-    "C_Cpp.intelliSenseEngine": "disabled",
+    // "C_Cpp.intelliSenseEngine": "disabled",
     "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.clang_format_sortIncludes": true,
     "C_Cpp.clang_format_fallbackStyle": "Microsoft",
@@ -238,9 +245,22 @@
         "plaintext": false,
         "markdown": false,
         "scminput": false,
-        "c": true
+        "c": true,
+        "json": false
     },
-    "chatgpt.runCodexInWindowsSubsystemForLinux": true,
     "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.editor.enablePreview": false,
+    "console-ninja.featureSet": "Community",
+    "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+        "live-server-extension": true,
+        "live-preview-extension": true
+    },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "vscode-office.openOutline": true,
+    "chat.viewSessions.orientation": "stacked",
+    "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+    "chat.disableAIFeatures": true,
+    "chatgpt.followUpQueueMode": "queue",
     // "editor.minimap.enabled": false,
 }
