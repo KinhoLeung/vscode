@@ -78,15 +78,14 @@
     "workbench.list.smoothScrolling": true,
     "workbench.colorTheme": "Dark+",
     "workbench.editor.empty.hint": "hidden",
-    "workbench.iconTheme": "office-material-icon-theme",
     "workbench.view.alwaysShowHeaderActions": true,
     "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
         "{hexdiff}:/**/*.*": "hexEditor.hexedit",
         "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+        "*.copilotmd": "vscode.markdown.preview.editor",
         "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.ui": "default",
         "{git,gitlens}:/**/*.ui": "default",
-        "*.qrc": "default"
+        "*.qrc": "qt-core.qrcEditor"
     },
     "http.proxy": "http://127.0.0.1:7890",
     "cmake.generator": "Ninja",
@@ -100,32 +99,20 @@
     // },
     "terminal.integrated.profiles.windows": {
         "PowerShell 7": {
-            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+            "path": "pwsh.exe",
+            "icon": "terminal-powershell"
         },
         "MSVC PowerShell": {
-            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+            "path": "pwsh.exe",
             "args": [
                 "-NoExit",
                 "-Command",
-                "& 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\Tools\\Launch-VsDevShell.ps1' -Arch amd64"
+                "$vswhere = Join-Path ([Environment]::GetFolderPath('ProgramFilesX86')) 'Microsoft Visual Studio\\Installer\\vswhere.exe'; $vs = & $vswhere -latest -products * -property installationPath; & (Join-Path $vs 'Common7\\Tools\\Launch-VsDevShell.ps1') -Arch amd64"
             ],
             "icon": "terminal-powershell"
         },
-        "ESP-IDF PowerShell": {
-            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-            "args": [
-                "-ExecutionPolicy",
-                "Bypass",
-                "-NoExit",
-                "-File",
-                "D:\\Espressif\\Initialize-Idf.ps1",
-                "-IdfId",
-                "esp-idf-f27b302856cbf3a7065694c7cc7f9de5"
-            ],
-            "icon": "terminal-powershell"
-        }
     },
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.defaultProfile.windows": "PowerShell 7",
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.suggest.enabled": true,
     "terminal.integrated.fontSize": 15, // 集成终端字号
@@ -166,6 +153,7 @@
     },
     "vscode-serial-monitor.customBaudRates": [
         2000000,
+        460800,
         512000,
         921600,
         1000000,
@@ -176,8 +164,6 @@
     "git.enableSmartCommit": true, // 没有暂存的更改时，直接提交全部
     "git.mergeEditor": true, // 启用三向合并编辑器
     "git.openRepositoryInParentFolders": "always",
-    "markdown.extension.completion.enabled": true,
-    "markdown.extension.preview.autoShowPreviewToSide": true,
     "qt-ui.customWidgetsDesignerExePath": "D:\\Qt\\6.9.2\\mingw_64\\bin\\designer.exe",
     "qt-core.qtInstallationRoot": "D:\\Qt",
     "qt-cpp.doNotAskForCMakePath": true,
@@ -216,11 +202,6 @@
     "editor.formatOnPaste": false,
     "editor.quickSuggestionsDelay": 0,
     "diffEditor.ignoreTrimWhitespace": false,
-    "idf.espIdfPathWin": "d:/espidf/esp-idf-6.0",
-    "idf.toolsPathWin": "C:/Users/jianhao.liang/.espressif",
-    "idf.gitPathWin": "D:/Git/cmd/git.exe",
-    "idf.pythonInstallPath": "C:/Users/jianhao.liang/.espressif/python_env/idf6.0_py3.13_env/Scripts/python.exe",
-    "idf.hasWalkthroughBeenShown": true,
     // "C_Cpp.intelliSenseEngine": "disabled",
     "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.clang_format_sortIncludes": true,
@@ -240,27 +221,25 @@
         "misc-unused-*"
     ],
     "editor.minimap.enabled": false,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false,
-        "c": true,
-        "json": false
-    },
-    "github.copilot.nextEditSuggestions.enabled": true,
     "workbench.editor.enablePreview": false,
-    "console-ninja.featureSet": "Community",
-    "console-ninja.toolsToEnableSupportAutomaticallyFor": {
-        "live-server-extension": true,
-        "live-preview-extension": true
-    },
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-    "vscode-office.openOutline": true,
     "chat.viewSessions.orientation": "stacked",
-    "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+    "chatgpt.runCodexInWindowsSubsystemForLinux": false,
+    "chatgpt.followUpQueueMode": "steer",
+    "chatgpt.reviewDelivery": "detached",
+    "workbench.iconTheme": "office-material-icon-theme",
+    "bookmarks.saveBookmarksInProject": true,
+    "vscode-office.codeMirrorTheme": "Dracula",
+    "explorer.confirmDelete": false,
     "chat.disableAIFeatures": true,
-    "chatgpt.followUpQueueMode": "queue",
+    "idf.hasWalkthroughBeenShown": true,
+    "idf.eimExecutableArgs": [
+        "gui",
+        "--idf-features ide"
+    ],
+    "idf.gitPathWin": "D:\\Git\\cmd\\git.exe",
+    "dart.flutterSdkPath": "D:\\flutter sdk\\flutter",
+    "terminal.integrated.initialHint": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "editor.columnSelection": true,
     // "editor.minimap.enabled": false,
 }
